@@ -27,7 +27,6 @@
 
   <div>
     <button class="btn">Get Started</button>
-    <!-- LOGIN BUTTON ADDED -->
     <button class="login-btn" onclick="openPopup()">Login</button>
   </div>
 </nav>
@@ -51,13 +50,16 @@
     <h2>Predict Property Price</h2>
     <p>Enter property details</p>
 
-    <input type="number" placeholder="Area (sqft)">
-    <input type="number" placeholder="Bedrooms">
-    <input type="number" placeholder="Bathrooms">
-    <input type="number" placeholder="Location Score">
+    <!-- ✅ FIXED INPUT IDs -->
+    <input type="number" id="area" placeholder="Area (sqft)">
+    <input type="number" id="bed" placeholder="Bedrooms">
+    <input type="number" id="bath" placeholder="Bathrooms">
+    <input type="number" id="location" placeholder="Location Score">
 
     <button class="predict-btn" onclick="predict()">Predict</button>
-    <div class="result"></div>
+
+    <!-- ✅ FIXED RESULT ID -->
+    <div class="result" id="result"></div>
   </div>
 
 </div>
@@ -76,6 +78,7 @@
   <button onclick="closePopup()">OK</button>
 </div>
 
+<!-- ✅ SINGLE SCRIPT BLOCK -->
 <script>
 
 function blinkCard(){
@@ -85,29 +88,24 @@ function blinkCard(){
   },1500);
 }
 
-/* HOME */
 function showHome(){
   document.getElementById("info").style.display="none";
 }
 
-/* ABOUT */
 function showAbout(){
   document.getElementById("info").style.display="block";
   document.getElementById("info").innerHTML=`
   <h2>About</h2>
-  <p>A House Price Prediction website serves as a bridge between data science and real estate decisions.A House Price Prediction website serves as a sophisticated bridge between complex data science and everyday real estate decisions. By leveraging Machine Learning algorithms, such as Linear Regression or Random Forest, these platforms analyze vast datasets including historical sales, neighborhood demographics, square footage, and proximity to amenities. The goal is to provide users with an instant, data-driven estimate of a property's market value, moving beyond simple guesswork. For buyers and sellers, this transparency is invaluable, offering a baseline for negotiations and helping them understand the specific variables that most significantly impact property costs in a volatile market.</p>`;
+  <p>A House Price Prediction website uses machine learning to estimate property values based on inputs like area, bedrooms, bathrooms, and location.</p>`;
 }
 
-/* HOW IT WORKS */
 function showHow(){
   document.getElementById("info").style.display="block";
   document.getElementById("info").innerHTML=`
   <h2>How it works</h2>
-  <p>Fill details like area, bedrooms, bathrooms and get instant prediction.Fill the relevant details based on your house. It will help to predict your home value. You can enter area in sqft, number of bedrooms, bathrooms and location score. Based on these inputs, the system analyzes patterns and gives estimated property value instantly.
-</p>`;
+  <p>Enter details like area, bedrooms, bathrooms, and location score to get instant price prediction.</p>`;
 }
 
-/* CONTACT */
 function showContact(){
   document.getElementById("info").style.display="block";
   document.getElementById("info").innerHTML=`
@@ -116,36 +114,32 @@ function showContact(){
   Location: Visakhapatnam, India</p>`;
 }
 
-/* POPUP FUNCTIONS */
 function openPopup(){
   document.getElementById("popup").classList.add("show");
 }
 
 function closePopup(){
   document.getElementById("popup").classList.remove("show");
-  
 }
 
+/* ✅ FIXED PREDICT FUNCTION */
+function predict(){
+  let area = parseFloat(document.getElementById("area").value);
+  let bed = parseFloat(document.getElementById("bed").value);
+  let bath = parseFloat(document.getElementById("bath").value);
+  let loc = parseFloat(document.getElementById("location").value);
 
-<!-- your whole HTML above -->
-
-<script>
-  function predict(){
-    let area = parseFloat(document.getElementById("area").value);
-    let bed = parseFloat(document.getElementById("bed").value);
-    let bath = parseFloat(document.getElementById("bath").value);
-    let loc = parseFloat(document.getElementById("location").value);
-
-    if(!area || !bed || !bath || !loc){
-      document.getElementById("result").innerHTML = "⚠️ Fill all fields!";
-      return;
-    }
-
-    let price = (area * 2000) + (bed * 50000) + (bath * 30000) + (loc * 10000);
-
-    document.getElementById("result").innerHTML =
-      "💰 Estimated Price: ₹ " + price.toLocaleString();
+  if(!area || !bed || !bath || !loc){
+    document.getElementById("result").innerHTML = "⚠️ Fill all fields!";
+    return;
   }
+
+  let price = (area * 2000) + (bed * 50000) + (bath * 30000) + (loc * 10000);
+
+  document.getElementById("result").innerHTML =
+    "💰 Estimated Price: ₹ " + price.toLocaleString();
+}
+
 </script>
 
 </body>
