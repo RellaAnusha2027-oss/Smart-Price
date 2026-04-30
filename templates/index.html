@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SMART PRICE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">
+    🏠 SMART PRICE
+    <span>AI-powered house valuation</span>
+  </div>
+
+  <ul>
+    <li onclick="showHome()">Home</li>
+    <li onclick="blinkCard()">Predict Price</li>
+    <li onclick="showAbout()">About</li>
+    <li onclick="showHow()">How it works</li>
+    <li onclick="showContact()">Contact</li>
+  </ul>
+
+  <div>
+    <button class="btn">Get Started</button>
+    <!-- LOGIN BUTTON ADDED -->
+    <button class="login-btn" onclick="openPopup()">Login</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+
+  <div class="left-text">
+    <h1>FIND YOUR’S HOME TRUE VALUE</h1>
+    <p>Get accurate property price predictions powered by advanced machine learning algorithms.</p>
+
+    <div class="boxes">
+      <div class="box">Accurate</div>
+      <div class="box">Instant</div>
+      <div class="box">Reliable</div>
+    </div>
+  </div>
+
+  <!-- CARD -->
+  <div class="card" id="card">
+    <h2>Predict Property Price</h2>
+    <p>Enter property details</p>
+
+    <input type="number" placeholder="Area (sqft)">
+    <input type="number" placeholder="Bedrooms">
+    <input type="number" placeholder="Bathrooms">
+    <input type="number" placeholder="Location Score">
+
+    <button class="predict-btn">Predict</button>
+    <div class="result"></div>
+  </div>
+
+</div>
+
+<!-- INFO SECTION -->
+<div class="info" id="info"></div>
+
+<!-- POPUP LOGIN CARD -->
+<div class="popup" id="popup">
+  <h3>Login</h3>
+
+  <input type="text" placeholder="Name">
+  <input type="email" placeholder="Email">
+  <input type="password" placeholder="Password">
+
+  <button onclick="closePopup()">OK</button>
+</div>
+
+<script>
+
+function blinkCard(){
+  document.getElementById("card").classList.add("blink");
+  setTimeout(()=>{
+    document.getElementById("card").classList.remove("blink");
+  },1500);
+}
+
+/* HOME */
+function showHome(){
+  document.getElementById("info").style.display="none";
+}
+
+/* ABOUT */
+function showAbout(){
+  document.getElementById("info").style.display="block";
+  document.getElementById("info").innerHTML=`
+  <h2>About</h2>
+  <p>A House Price Prediction website serves as a bridge between data science and real estate decisions.A House Price Prediction website serves as a sophisticated bridge between complex data science and everyday real estate decisions. By leveraging Machine Learning algorithms, such as Linear Regression or Random Forest, these platforms analyze vast datasets including historical sales, neighborhood demographics, square footage, and proximity to amenities. The goal is to provide users with an instant, data-driven estimate of a property's market value, moving beyond simple guesswork. For buyers and sellers, this transparency is invaluable, offering a baseline for negotiations and helping them understand the specific variables that most significantly impact property costs in a volatile market.</p>`;
+}
+
+/* HOW IT WORKS */
+function showHow(){
+  document.getElementById("info").style.display="block";
+  document.getElementById("info").innerHTML=`
+  <h2>How it works</h2>
+  <p>Fill details like area, bedrooms, bathrooms and get instant prediction.Fill the relevant details based on your house. It will help to predict your home value. You can enter area in sqft, number of bedrooms, bathrooms and location score. Based on these inputs, the system analyzes patterns and gives estimated property value instantly.
+</p>`;
+}
+
+/* CONTACT */
+function showContact(){
+  document.getElementById("info").style.display="block";
+  document.getElementById("info").innerHTML=`
+  <h2>Contact</h2>
+  <p>Email: contact@housepredictor.com<br>
+  Location: Visakhapatnam, India</p>`;
+}
+
+/* POPUP FUNCTIONS */
+function openPopup(){
+  document.getElementById("popup").classList.add("show");
+}
+
+function closePopup(){
+  document.getElementById("popup").classList.remove("show");
+}
+
+</script>
+
+</body>
+</html>
